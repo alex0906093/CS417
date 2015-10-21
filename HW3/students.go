@@ -1,3 +1,5 @@
+package main	
+
 Student struct{ 
 	NetID string `json: "id"`
 	Name string `json: "name"`
