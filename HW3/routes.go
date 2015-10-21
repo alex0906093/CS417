@@ -13,21 +13,33 @@ type Routes []Route
 
 var routes = Routes{
     Route{
-        "Index",
-        "GET",
-        "/",
-        Index,
-    },
+        "Post",
+        "POST",
+        "/Student",
+        postHandle
+    }
     Route{
-        "TodoIndex",
+        "Get",
         "GET",
-        "/todos",
-        TodoIndex,
-    },
+        "/Student/getstudent?{studentID}",
+        getHandle
+    }
     Route{
-        "TodoShow",
+        "Delete",
+        "DELETE",
+        "/Student",
+        postHandle
+    }
+    Route{
+        "Update",
+        "POST",
+        "/Student",
+        postHandle
+    }
+    Route{
+        "List",
         "GET",
-        "/todos/{todoId}",
-        TodoShow,
-    },
+        "/Student",
+        postHandle
+    }
 }
