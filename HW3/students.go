@@ -1,6 +1,6 @@
 package main	
 
-Student struct{ 
+type Student struct{ 
 	NetID string `json: "id"`
 	Name string `json: "name"`
 	Major string `json: "major"`
@@ -9,4 +9,4 @@ Student struct{
 	Rating string `json: "rating"`
 }
 
-type Students[] Student
+type Students []Student

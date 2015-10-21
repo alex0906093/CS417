@@ -16,30 +16,30 @@ var routes = Routes{
         "Post",
         "POST",
         "/Student",
-        postHandle
-    }
+        postHandle,
+    },
     Route{
         "Get",
         "GET",
         "/Student/getstudent?{studentID}",
-        getHandle
-    }
+        getHandle,
+    },
     Route{
         "Delete",
         "DELETE",
         "/Student",
-        postHandle
-    }
+        deleteHandle,
+    },
     Route{
         "Update",
         "POST",
         "/Student",
-        postHandle
-    }
+        updateHandle,
+    },
     Route{
         "List",
         "GET",
         "/Student",
-        postHandle
-    }
+        listHandle,
+    },
 }
