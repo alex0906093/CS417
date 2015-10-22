@@ -1,0 +1,4 @@
+test scripts
+
+POST
+go run test.go -url="http://localhost:1555/Student" -method=Create -data=’{"NetID":"147001234", "Name":"Mike","Major":"Computer Science","Year":2015,"Grade":90,"Rating":"D"}’
