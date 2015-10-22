@@ -1,8 +1,9 @@
 package main
 
 import (
-    //"encoding/json"
+    "encoding/json"
     "fmt"
+    "bytes"
     "net/http"
     "github.com/gorilla/mux"
 )
@@ -20,6 +21,11 @@ func postHandle(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Just show we're getting here")
     vars := mux.Vars(r)
     fmt.Println("vars is", vars)
+    body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+    if err != nil{
+        panic(err)
+    }
+    fmt.Println("Json Data ", m)
 	//write to w
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
     w.WriteHeader(http.StatusOK)
