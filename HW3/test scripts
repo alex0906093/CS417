@@ -1,8 +1,4 @@
 test scripts
 
-server
-go run router.go routes.go students.go handlers.go main.go
-
 POST
 go run students.go client.go -url="http://localhost:1555/Student" -method=Create -data=’{"NetID":"147001234","Name":"Mike","Major":"Computer Science","Year":2015,"Grade":90,"Rating":"D"}’
-

@@ -8,6 +8,7 @@ import (
     "io/ioutil"
     "net/http"
     "github.com/gorilla/mux"
+    "gopkg.in/mgo.v2"
 )
 //helper function to retreive http stuff
 /*
@@ -37,7 +38,16 @@ func postHandle(w http.ResponseWriter, r *http.Request) {
             panic(err)
        }
     }
-    fmt.Println("Json Data ", body)
+    fmt.Println("Json Data ", student)
+    dbsess, err := mgo.Dial("localhost:27017")
+    if err != nil {
+        fmt.Println("DB connection error")
+        panic(err)
+    }
+    err1 := addToDB(&student, dbsess)
+    fmt.Println(err1)
+    dbsess.Close()
+
     //write to w
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
     w.WriteHeader(http.StatusOK)

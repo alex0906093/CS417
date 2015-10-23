@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"fmt"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type sslice []string
@@ -127,8 +128,10 @@ func main(){
 			fmt.Println("problem converting grade")
 			return
 		}
+		o := bson.NewObjectId()
 		qStudent := 
 			Student{
+				o,
 				netID,
 				name,
 				major,
@@ -142,8 +145,6 @@ func main(){
 		if err != nil{
 			fmt.Println("problem ", err)
 		}
-		//fmt.Println("b is ", b)
-		
 		// create http request
 		req, err := http.NewRequest("POST", *urlPtr, bytes.NewBuffer(b))
 		req.Header.Set("X-Custom-Header", "myvalue")
@@ -162,7 +163,6 @@ func main(){
 		fmt.Println("Response Headers", resp.Header)
 		body, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println("Response Body", string(body))
-		
 		
 	}
 	
