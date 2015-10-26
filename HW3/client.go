@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"io/ioutil"
+	//"io"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -43,7 +44,7 @@ func main(){
 		//Cases for method flags
 	//no method flag entered
 	if strings.EqualFold(*methodPtr, "none") {
-		fmt.Println("Invalid method argument, program exiting")
+		fmt.Println("Invalid/missing method argument, program exiting")
 		return
 	}
 
@@ -180,6 +181,49 @@ func main(){
 	}
 	//list, for LIST Operation and GET operation
 	if strings.EqualFold(*methodPtr, "list") {
+		//check valid URL
+		if strings.EqualFold(*urlPtr, "none"){
+			fmt.Println("You need to enter a URL with the -url flag")
+		}else if strings.EqualFold(*urlPtr,"http://localhost:1555/Student/listall"){
+			req, err := http.NewRequest("GET", *urlPtr, nil)
+			req.Header.Set("X-Custom-Header", "myvalue")
+			req.Header.Set("Content-Type", "application/json;charset=UTF-8")
+		
+			//send http request
+			client := &http.Client{}
+			resp, err := client.Do(req)
+	
+			if err != nil {
+				panic(err)
+			}
+		
+			defer resp.Body.Close()
+			fmt.Println("Response Status: ", resp.Status)
+			fmt.Println("Response Headers: ", resp.Header)
+			body, _ := ioutil.ReadAll(resp.Body)
+			fmt.Println("Response Body:", string(body))
+
+		}else if strings.Contains(*urlPtr, "http://localhost:1555/Student/getstudent"){
+			req, err := http.NewRequest("GET", *urlPtr, nil)
+			req.Header.Set("X-Custom-Header", "myvalue")
+			req.Header.Set("Content-Type", "application/json;charset=UTF-8")
+		
+		//send http request
+			client := &http.Client{}
+			resp, err := client.Do(req)
+	
+			if err != nil {
+				panic(err)
+			}
+		
+			defer resp.Body.Close()
+			fmt.Println("Response Status: ", resp.Status)
+			fmt.Println("Response Headers: ", resp.Header)
+			body, _ := ioutil.ReadAll(resp.Body)
+			fmt.Println("Response Body:", string(body))
+		}else{
+			fmt.Println("invalid URL, program exiting")
+		}
 
 	}
 	

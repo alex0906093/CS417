@@ -21,7 +21,7 @@ var routes = Routes{
     Route{
         "Get",
         "GET",
-        "/Student/getstudent?{studentID}",
+        "/Student/getstudent",
         getHandle,
     },
     Route{
@@ -39,7 +39,7 @@ var routes = Routes{
     Route{
         "List",
         "GET",
-        "/Student",
+        "/Student/listall",
         listHandle,
     },
 }

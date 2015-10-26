@@ -2,3 +2,16 @@ test scripts
 
 POST
 go run students.go client.go -url="http://localhost:1555/Student" -method=Create -data=’{"NetID":"147001234","Name":"Mike","Major":"Computer Science","Year":2015,"Grade":90,"Rating":"D"}’
+
+GET
+go run client.go students.go  -url="http://localhost:1555/Student/getstudent?name=Mary" -method=list
+
+LIST
+go run client.go students.go -url="http://localhost:1555/Student/listall" -method=list
+
+DELETE
+go run client.go students.go –url="http://localhost:1555/Student" -method=remove  -year=2010
+
+SERVER
+go run routes.go router.go main.go students.go logger.go db.go handlers.go
+
